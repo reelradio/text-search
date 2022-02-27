@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# page scraper for text search
+
+function usage
+{
+    echo "USAGE: $0 $1"
+    exit
+}
+
+function dump
+{
+    echo "INSERT INTO tsearch(url, body) VALUES('$1', '$(lynx -dump -nolist -center=false $1 | tr "\n" " " | tr "'" " " | xargs)');" >> insert_tsearch.sql
+}
+
+# main
+if [[ $# -eq 0 ]]
+then
+    usage "url"
+    exit
+fi
+
+# get url and dump into insert_tsearch.sql
+dump $1
+
