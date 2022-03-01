@@ -10,7 +10,9 @@ function usage
 
 function dump
 {
-    echo "INSERT INTO tsearch(url, body) VALUES('$1', '$(lynx -dump -nolist -center=false $1 | tr "\n" " " | tr "'" " " | xargs)');" >> insert_tsearch.sql
+    URL=$1
+    RELATIVE_URL=$(echo $URL | sed 's/.*.com//')
+    echo "INSERT INTO tsearch(url, body) VALUES('$RELATIVE_URL', '$(lynx --dump --nolist --center=off $URL | sed "s/[\'\";,._-]/ /g" | xargs)');" >> insert_tsearch.sql
 }
 
 # main
