@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILENAME=$1
+
+while read -r line
+do
+  ./scraper $line
+done < $FILENAME
