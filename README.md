@@ -32,6 +32,14 @@ Once the `insert_tsearch.sql` file is fully populated, run
 
 in MySQL to insert all rows into the `tsearch` table.
 
+## To scrape multiple pages
+
+```
+./file_scraper filename
+```
+
+where `filename` is a text file that contains a list of URLs that you want to scrape. Each URL must be separated by a new line.
+
 ## Running a query
 
 The `tsearch` table is setup with a full text index, so instead of using the `LIKE` keyword in MySQL, we can use `MATCH` and `AGAINST`.
